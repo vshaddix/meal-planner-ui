@@ -21,9 +21,17 @@ function requireAuth(nextState, replace) {
   }
 }
 
+function checkIfLoggedIn(nextState, replace) {
+  if(isLoggedIn()) {
+    replace({
+      pathname: '/dashboard'
+    });
+  }
+}
+
 export default (
   <Route path='/' component={App}>
-    <IndexRoute component={LoginPage} />
+    <IndexRoute component={LoginPage} onEnter={checkIfLoggedIn}/>
     <Route path='login' component={LoginPage} />
     <Route path='register' component={RegisterPage} />
     <Route path='dashboard' component={DashboardPage} onEnter={requireAuth} />
