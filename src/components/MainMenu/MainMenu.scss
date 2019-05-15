@@ -1,0 +1,18 @@
+a {
+  &:link, &:visited {
+    padding: 14px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    color:black;
+  }
+
+  &.active {
+    color: red;
+  }
+
+  &:hover, &:active {
+    color:purple;
+    text-decoration: underline;
+  }
+}
