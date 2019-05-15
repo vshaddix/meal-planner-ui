@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { loginUserAction } from '../actions/authenticationActions';
@@ -16,7 +16,7 @@ class LoginPage extends Component {
     };
 
     this.props.dispatch(loginUserAction(data));
-  }
+  };
 
   render() {
     let isSuccess, message;
@@ -28,6 +28,9 @@ class LoginPage extends Component {
       if (isSuccess) {
         localStorage.removeItem('token');
         localStorage.setItem('token', this.props.response.login.response.Authorization);
+        return (
+          <Redirect to={{ pathname: '/dashboard', state: { from: this.props.location } }} />
+        );
       }
     }
 

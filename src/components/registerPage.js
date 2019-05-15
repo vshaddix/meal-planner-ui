@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { registerUserAction } from '../actions/authenticationActions';
@@ -17,13 +17,20 @@ class RegisterPage extends Component {
     };
 
     this.props.dispatch(registerUserAction(data));
-  }
+  };
 
   render() {
     let message, isSuccess;
 
     if (this.props.response.register.hasOwnProperty('response')) {
-      isSuccess = this.props.response.register.response.success;
+      isSuccess = this.props.response.register.response.status;
+      if (isSuccess) {
+        localStorage.removeItem('token');
+        localStorage.setItem('token', this.props.response.register.response.Authorization);
+        return (
+          <Redirect to={{ pathname: '/dashboard', state: { from: this.props.location } }} />
+        );
+      }
       message = this.props.response.register.response.message;
     }
 
