@@ -6,10 +6,11 @@ import RegisterPage from '../components/registerPage';
 import DashboardPage from '../components/dashboardPage';
 import { BrowserRouter as Router } from 'react-router-dom';
 import PrivateRoute from './privateRoute';
+import IndexRoute from './indexRoute';
 
 export default () => (
   <Router>
-    <Route path='/' component={App}/>
+    <IndexRoute path='/' component={App}/>
     <Route path='/login' component={LoginPage} />
     <Route path='/register' component={RegisterPage} />
     <PrivateRoute path='/dashboard' component={DashboardPage}/>
