@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link, browserHistory } from 'react-router';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { loginUserAction } from '../actions/authenticationActions';
@@ -34,7 +34,7 @@ class LoginPage extends Component {
     return (
       <div>
         <h3>Login Page</h3>
-        {!isSuccess ? <div>{message}</div> : browserHistory.push('dashboard')}
+        {!isSuccess ? <div>{message}</div> : ''}
         <form onSubmit={this.onHandleLogin}>
           <div>
             <label>Email</label>

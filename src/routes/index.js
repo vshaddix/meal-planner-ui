@@ -1,39 +1,17 @@
 import React from 'react';
-import { Route, IndexRoute } from 'react-router';
+import { Route } from 'react-router';
 import App from '../container/App';
 import LoginPage from '../components/loginPage';
 import RegisterPage from '../components/registerPage';
 import DashboardPage from '../components/dashboardPage';
+import { BrowserRouter as Router } from 'react-router-dom';
+import PrivateRoute from './privateRoute';
 
-function isLoggedIn() {
-  if (localStorage.getItem('token')) {
-    return true;
-  }
-
-  return false;
-}
-
-function requireAuth(nextState, replace) {
-  if (!isLoggedIn()) {
-    replace({
-      pathname: '/login'
-    });
-  }
-}
-
-function checkIfLoggedIn(nextState, replace) {
-  if(isLoggedIn()) {
-    replace({
-      pathname: '/dashboard'
-    });
-  }
-}
-
-export default (
-  <Route path='/' component={App}>
-    <IndexRoute component={LoginPage} onEnter={checkIfLoggedIn}/>
-    <Route path='login' component={LoginPage} />
-    <Route path='register' component={RegisterPage} />
-    <Route path='dashboard' component={DashboardPage} onEnter={requireAuth} />
-  </Route>
+export default () => (
+  <Router>
+    <Route path='/' component={App}/>
+    <Route path='/login' component={LoginPage} />
+    <Route path='/register' component={RegisterPage} />
+    <PrivateRoute path='/dashboard' component={DashboardPage}/>
+  </Router>
 );
