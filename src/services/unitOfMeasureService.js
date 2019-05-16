@@ -5,12 +5,19 @@ export default class UnitOfMeasureService {
     this.apiUrl = (apiBaseUrl || 'http://localhost:5000') + '/uom/';
     this.fetch = this.fetch.bind(this);
     this.createNewUom = this.createNewUom.bind(this);
+    this.fetchAllUnitsOfMeasure = this.fetchAllUnitsOfMeasure.bind(this);
   }
 
   createNewUom(unitOfMeasure) {
-    return this.fetch(`${this.apiUrl}`, {
+    return this.fetch(this.apiUrl, {
       method: 'POST',
       body: JSON.stringify(unitOfMeasure)
+    });
+  }
+
+  fetchAllUnitsOfMeasure() {
+    return this.fetch(this.apiUrl, {
+      method: 'GET'
     });
   }
 

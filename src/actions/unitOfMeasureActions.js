@@ -12,7 +12,6 @@ export const createUnitOfMeasure = unitOfMeasure => {
         payload: response
       });
     } else {
-      debugger;
       dispatch({
         type: types.CREATE_UNIT_OF_MEASURE_SUCCESS,
         payload: response
@@ -22,5 +21,17 @@ export const createUnitOfMeasure = unitOfMeasure => {
         payload: response
       });
     }
+  }
+};
+
+export const fetchUnitsOfMeasure = () => {
+  return async function (dispatch) {
+    const service = new UnitOfMeasureService();
+    const response = await service.fetchAllUnitsOfMeasure();
+
+    dispatch({
+      type: types.FETCH_ALL_UNITS_OF_MEASURE,
+      payload: response.data
+    });
   }
 };

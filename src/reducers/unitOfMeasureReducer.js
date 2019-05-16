@@ -10,6 +10,8 @@ export default function(state = initialState, action) {
   let response = action.payload;
 
   switch(action.type) {
+    case types.FETCH_ALL_UNITS_OF_MEASURE:
+      return { ...state, uoms: response };
     case types.CREATE_UNIT_OF_MEASURE:
       return { ...state,
         uoms: [

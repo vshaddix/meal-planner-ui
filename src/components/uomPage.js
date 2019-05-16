@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { createUnitOfMeasure } from '../actions/unitOfMeasureActions';
+import { UnitOfMeasuresListContainer } from './UnitOfMeasuresList/UnitOfMeasuresList';
 
 class UnitOfMeasurePage extends Component {
   constructor(props) {
@@ -41,6 +42,9 @@ class UnitOfMeasurePage extends Component {
           <label htmlFor="uom-name">Name:</label>
           <input onChange={(e) => this.setState({uomName: e.target.value})} value={this.state.uomName} name={"uom-name"} type="text"/>
           <button onClick={this.createNewUom}>Create</button>
+        </div>
+        <div>
+          <UnitOfMeasuresListContainer/>
         </div>
       </div>
     );
