@@ -1,12 +1,10 @@
 import * as types from '../actions';
 
 export default function(state = [], action) {
-  let response = action.response;
+  let response = action.payload;
 
   switch(action.type) {
-    case types.REGISTER_USER_SUCCESS:
-      return { ...state, response };
-    case types.REGISTER_USER_ERROR:
+    case types.REGISTER_USER:
       return { ...state, response };
     default:
       return state;

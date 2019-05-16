@@ -71,7 +71,6 @@ const RegisterViewContainer = connect(
   null,
 )(RegisterPage);
 
-// export default RegisterPage;
 
 export default RegisterViewContainer;
 
