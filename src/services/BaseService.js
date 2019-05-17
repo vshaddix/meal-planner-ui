@@ -3,10 +3,15 @@ import propTypes from 'prop-types';
 
 class BaseService {
   constructor(apiBaseUrl) {
-    this.apiUrl = (apiBaseUrl || 'http://localhost:5000') + this.apiUri;
+    this.apiBaseUrl = (apiBaseUrl || 'http://localhost:5000');
+    this.apiUri = '';
     this.fetch = this.fetch.bind(this);
     this.createNew = this.createNew.bind(this);
     this.fetchAll = this.fetchAll.bind(this);
+  }
+
+  get apiUrl() {
+    return `${this.apiBaseUrl}/${this.apiUri}`;
   }
 
   createNew(entityData) {
