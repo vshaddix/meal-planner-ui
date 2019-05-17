@@ -4,7 +4,7 @@ import { UnitOfMeasuresListContainer } from './UnitOfMeasuresList/UnitOfMeasures
 import UnitOfMeasureCreateForm from './UnitOfMeasureCreateForm/UnitOfMeasureCreateForm';
 import { fetchUnitsOfMeasure } from '../actions/unitOfMeasureActions';
 
-const UnitOfMeasurePage = ({ uoms, fetchUnitsOfMeasure }) => {
+const UnitOfMeasurePage = ({ fetchUnitsOfMeasure }) => {
   useEffect(() => {
     fetchUnitsOfMeasure();
   });
@@ -32,6 +32,5 @@ const UnitOfMeasurePageContainer = connect(
   null,
   mapDispatchToProps,
 )(UnitOfMeasurePage);
-
 
 export default UnitOfMeasurePageContainer;
