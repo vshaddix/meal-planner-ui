@@ -9,6 +9,7 @@ import LoginPage from '../components/loginPage';
 import RegisterPage from '../components/registerPage';
 import DashboardPage from '../components/dashboardPage';
 import UnitOfMeasurePage from '../components/uomPage';
+import IngredientsPage from '../components/ingredientsPage';
 
 export default () => (
   <Router>
@@ -17,6 +18,7 @@ export default () => (
     <Route path='/register' component={RegisterPage} />
     <PrivateRoute path='/dashboard' component={DashboardPage}/>
     <PrivateRoute path='/uoms' component={UnitOfMeasurePage}/>
+    <PrivateRoute path='/ingredients' component={IngredientsPage}/>
     <PrivateRoute path='/uoms/create' component={UnitOfMeasurePage}/>
   </Router>
 );
