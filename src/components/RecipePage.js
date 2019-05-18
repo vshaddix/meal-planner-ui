@@ -12,7 +12,6 @@ const RecipePage = () => {
   );
 };
 
-
 const RecipePageContainer = connect(
   null,
   null,
