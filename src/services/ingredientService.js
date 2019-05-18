@@ -1,6 +1,6 @@
 import { getAuthenticationToken, isLoggedIn } from '../utils/authUtil';
 
-export default class UnitOfMeasureService {
+export default class IngredientService {
   constructor(apiBaseUrl) {
     this.apiUrl = (apiBaseUrl || 'http://localhost:5000') + '/ingredient/';
     this.fetch = this.fetch.bind(this);
