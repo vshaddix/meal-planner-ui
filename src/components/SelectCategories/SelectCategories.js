@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 
 const SelectCategories = ({ categories }) => {
   const [selectedCategories, setSelectedCategories] = useState([]);
-  const [autoCompletedCategories, setAutoCompletedCategories] = useState(categories);
+  const [autoCompletedCategories, setAutoCompletedCategories] = useState([]);
 
   const autoCompleteCategories = (e) => {
     const inputtedText = e.target.value.toLowerCase();
@@ -21,6 +21,10 @@ const SelectCategories = ({ categories }) => {
     setSelectedCategories([...selectedCategories, category]);
     setAutoCompletedCategories(autoCompletedCategories.filter(cat => cat.name !== category.name))
   };
+  const removeFromSelected = (toBeRemovedCategory) => {
+    const newSelectedCategories = selectedCategories.filter(category => category.name !== toBeRemovedCategory.name);
+    setSelectedCategories(newSelectedCategories);
+  };
   return (
     <div>
       <input type="text" onInput={autoCompleteCategories}/>
@@ -31,7 +35,10 @@ const SelectCategories = ({ categories }) => {
       </div>
       <div className="selected-categories">
         {selectedCategories.map((category) => (
-          <span className="selected" key={category.name}>{category.name},</span>
+          <div key={category.name}>
+            <span className="selected">{category.name}</span>
+            <button onClick={() => removeFromSelected(category)}>Remove</button>
+          </div>
         ))}
       </div>
     </div>
