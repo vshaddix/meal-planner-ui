@@ -1,20 +1,39 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
+import { fetchIngredients } from '../actions/ingredientsActions';
+import { fetchCategories } from '../actions/CategoriesActions';
+import { fetchUnitsOfMeasure } from '../actions/unitOfMeasureActions';
+import RecipeCreateFormContainer from './RecipeCreateForm/RecipeCreateForm';
 
-const RecipePage = () => {
 
+const RecipePage = ({ fetchCategories, fetchIngredients, fetchUnitsOfMeasure }) => {
+  useEffect(() => {
+    fetchCategories();
+    fetchIngredients();
+    fetchUnitsOfMeasure();
+  });
   return (
     <div>
-      <h2>
-        Recipes
-      </h2>
+      <RecipeCreateFormContainer/>
     </div>
   );
 };
 
+const mapDispatchToProps = (dispatch) => ({
+  fetchCategories: () => {
+    dispatch(fetchCategories());
+  },
+  fetchIngredients: () => {
+    dispatch(fetchIngredients());
+  },
+  fetchUnitsOfMeasure: () => {
+    dispatch(fetchUnitsOfMeasure());
+  },
+});
+
 const RecipePageContainer = connect(
   null,
-  null,
+  mapDispatchToProps,
 )(RecipePage);
 
 export default RecipePageContainer;

@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import './SelectCategories.scss';
 import propTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { addCategoryToNewRecipe } from '../../actions/RecipeActions';
+import { addCategoryToNewRecipe, removeCategoryFromNewRecipe } from '../../actions/RecipeActions';
 
-const SelectCategories = ({ categories, selectCategory }) => {
+const SelectCategories = ({ categories, selectCategory, removeCategoryFromSelected }) => {
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [autoCompletedCategories, setAutoCompletedCategories] = useState([]);
 
@@ -24,6 +24,7 @@ const SelectCategories = ({ categories, selectCategory }) => {
     setAutoCompletedCategories(autoCompletedCategories.filter(cat => cat.name !== category.name))
   };
   const removeFromSelected = (toBeRemovedCategory) => {
+    removeCategoryFromSelected(toBeRemovedCategory);
     const newSelectedCategories = selectedCategories.filter(category => category.name !== toBeRemovedCategory.name);
     setSelectedCategories(newSelectedCategories);
   };
@@ -60,6 +61,9 @@ SelectCategories.defaultProps = {
 const mapDispatchToProps = (dispatch) => ({
   selectCategory: (category) => {
     dispatch(addCategoryToNewRecipe(category));
+  },
+  removeCategoryFromSelected: (category) => {
+    dispatch(removeCategoryFromNewRecipe(category))
   },
 });
 

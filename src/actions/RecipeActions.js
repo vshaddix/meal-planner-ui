@@ -5,3 +5,8 @@ export const addCategoryToNewRecipe = category => ({
   payload: category
 });
 
+export const removeCategoryFromNewRecipe = category => ({
+  type: types.REMOVE_CATEGORY_FROM_NEW_RECIPE,
+  payload: category
+});
+
