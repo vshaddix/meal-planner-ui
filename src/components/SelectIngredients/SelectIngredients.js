@@ -6,20 +6,34 @@ import { connect } from 'react-redux';
 const SelectIngredients = ({ ingredients }) => {
   const [selectedIngredients, setSelectedIngredients] = useState([]);
   const [autoCompletedIngredients, setAutoCompletedIngredients] = useState([]);
+  const [searchString, setSearchString] = useState('');
+
+  const filterIngredientsByName = (searchString) => {
+    const ingredientsToFilter = ingredients.filter(ingredient => !selectedIngredients.includes(ingredient));
+    return ingredientsToFilter.filter(ingredient => ingredient.name.toLowerCase().indexOf(searchString) !== -1);
+  };
 
   const autoCompleteIngredients = (e) => {
     const inputtedText = e.target.value.toLowerCase();
+    setSearchString(inputtedText);
     if (inputtedText === '') {
       setAutoCompletedIngredients([]);
       return;
     }
-    const ingredientsToFilter = ingredients.filter(ingredient => !selectedIngredients.includes(ingredient));
-    setAutoCompletedIngredients(ingredientsToFilter.filter(ingredient => ingredient.name.toLowerCase().indexOf(inputtedText) !== -1));
+    setAutoCompletedIngredients(filterIngredientsByName(searchString));
   };
 
   const setSelected = (ingredient) => {
     setSelectedIngredients([...selectedIngredients, ingredient]);
-    setAutoCompletedIngredients(autoCompletedIngredients.filter(ingre => ingre.name !== ingredient.name))
+    setAutoCompletedIngredients(autoCompletedIngredients.filter(ing => ing.name !== ingredient.name))
+  };
+
+  const removeFromSelected = (ingredient) => {
+    const newSelectedCategories = selectedIngredients.filter(ing => ing.name !== ingredient.name);
+    setSelectedIngredients(newSelectedCategories);
+    if (ingredient.name.indexOf(searchString) > -1) {
+      setAutoCompletedIngredients([...autoCompletedIngredients, ingredient]);
+    }
   };
   return (
     <div>
@@ -31,7 +45,10 @@ const SelectIngredients = ({ ingredients }) => {
       </div>
       <div className="selected-ingredients">
         {selectedIngredients.map((ingredient) => (
-          <span className="selected" key={ingredient.name}>{ingredient.name},</span>
+          <div key={ingredient.name}>
+            <span className="selected">{ingredient.name}</span>
+            <button onClick={() => removeFromSelected(ingredient)}>Remove</button>
+          </div>
         ))}
       </div>
     </div>

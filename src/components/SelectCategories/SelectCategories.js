@@ -23,6 +23,7 @@ const SelectCategories = ({ categories, selectCategory, removeCategoryFromSelect
     setSelectedCategories([...selectedCategories, category]);
     setAutoCompletedCategories(autoCompletedCategories.filter(cat => cat.name !== category.name))
   };
+
   const removeFromSelected = (toBeRemovedCategory) => {
     removeCategoryFromSelected(toBeRemovedCategory);
     const newSelectedCategories = selectedCategories.filter(category => category.name !== toBeRemovedCategory.name);

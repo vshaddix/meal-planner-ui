@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { SelectCategoriesContainer } from '../SelectCategories/SelectCategories';
+import { SelectIngredientsContainer } from "../SelectIngredients/SelectIngredients";
 // import { createIngredient } from '../../actions/ingredientsActions';
 
 class RecipeCreateForm extends Component {
@@ -32,6 +33,11 @@ class RecipeCreateForm extends Component {
         <div className="recipe-categories">
           <span>Select categories for this recipe</span>
           <SelectCategoriesContainer/>
+        </div>
+        <hr/>
+        <div className="recipe-ingredients">
+          <span>Select ingredients:</span>
+          <SelectIngredientsContainer/>
         </div>
       </div>
     );
