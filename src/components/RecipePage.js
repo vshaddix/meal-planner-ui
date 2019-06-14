@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { fetchIngredients } from '../actions/ingredientsActions';
+import { fetchIngredients } from '../actions/IngredientsActions';
 import { fetchCategories } from '../actions/CategoriesActions';
-import { fetchUnitsOfMeasure } from '../actions/unitOfMeasureActions';
+import { fetchUnitsOfMeasure } from '../actions/UnitOfMeasureActions';
 import RecipeCreateFormContainer from './RecipeCreateForm/RecipeCreateForm';
 
 

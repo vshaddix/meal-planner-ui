@@ -1,5 +1,5 @@
 import * as types from './index';
-import { registerUserService, loginUserService } from '../services/authenticationService';
+import { registerUserService, loginUserService } from '../services/AuthenticationService';
 
 export const registerUserAction = user => {
   return async function (dispatch) {

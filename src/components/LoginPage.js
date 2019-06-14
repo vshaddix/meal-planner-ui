@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { loginUserAction } from '../actions/authenticationActions';
+import { loginUserAction } from '../actions/AuthenticationActions';
 
 class LoginPage extends Component {
   onHandleLogin = (event) => {

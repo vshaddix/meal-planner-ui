@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { IngredientsListContainer } from './IngredientsList/IngredientsList';
 import IngredientsCreateFormContainer from './IngredientsCreateForm/IngredientsCreateForm';
-import { fetchIngredients } from '../actions/ingredientsActions';
+import { fetchIngredients } from '../actions/IngredientsActions';
 
 const IngredientsPage = ({ fetchIngredients }) => {
   useEffect(() => {

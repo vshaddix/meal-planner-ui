@@ -1,4 +1,4 @@
-import { getAuthenticationToken, isLoggedIn } from '../utils/authUtil';
+import { getAuthenticationToken, isLoggedIn } from '../utils/AuthUtil';
 import propTypes from 'prop-types';
 
 class BaseService {

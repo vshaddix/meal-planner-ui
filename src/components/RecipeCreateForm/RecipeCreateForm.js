@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { SelectCategoriesContainer } from '../SelectCategories/SelectCategories';
 import { SelectIngredientsContainer } from "../SelectIngredients/SelectIngredients";
-// import { createIngredient } from '../../actions/ingredientsActions';
+// import { createIngredient } from '../../actions/IngredientsActions';
 
 class RecipeCreateForm extends Component {
   constructor(props) {

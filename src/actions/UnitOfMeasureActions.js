@@ -1,5 +1,5 @@
 import * as types from './index';
-import UnitOfMeasureService from '../services/unitOfMeasureService';
+import UnitOfMeasureService from '../services/UnitOfMeasureService';
 
 export const createUnitOfMeasure = unitOfMeasure => {
   return async function (dispatch) {

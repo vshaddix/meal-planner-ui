@@ -1,5 +1,5 @@
 import * as types from './index';
-import IngredientService from '../services/ingredientService';
+import IngredientService from '../services/IngredientService';
 
 export const createIngredient = ingredient => {
   return async function (dispatch) {

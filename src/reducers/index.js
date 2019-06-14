@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import register from './registerReducer';
-import login from './loginReducer';
-import unitOfMeasure from './unitOfMeasureReducer';
-import ingredients from './ingredientReducer';
+import register from './RegisterReducer';
+import login from './LoginReducer';
+import unitOfMeasure from './UnitOfMeasureReducer';
+import ingredients from './IngredientReducer';
 import categories from './CategoryReducer';
 import RecipeReducer from './RecipeReducer';
 

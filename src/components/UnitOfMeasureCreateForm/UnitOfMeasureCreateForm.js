@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { createUnitOfMeasure } from '../../actions/unitOfMeasureActions';
+import { createUnitOfMeasure } from '../../actions/UnitOfMeasureActions';
 
 class UnitOfMeasureCreateForm extends Component {
   constructor(props) {

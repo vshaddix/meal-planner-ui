@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { isLoggedIn } from '../utils/authUtil';
+import { isLoggedIn } from '../utils/AuthUtil';
 import MainMenu from "../components/MainMenu/MainMenu";
 
 class App extends Component {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { createIngredient } from '../../actions/ingredientsActions';
+import { createIngredient } from '../../actions/IngredientsActions';
 
 class IngredientsCreateForm extends Component {
   constructor(props) {

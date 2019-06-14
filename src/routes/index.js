@@ -2,14 +2,14 @@ import React from 'react';
 import { Route } from 'react-router';
 import App from '../container/App';
 import { BrowserRouter as Router } from 'react-router-dom';
-import PrivateRoute from './privateRoute';
-import IndexRoute from './indexRoute';
+import PrivateRoute from './PrivateRoute';
+import IndexRoute from './IndexRoute';
 
-import LoginPage from '../components/loginPage';
-import RegisterPage from '../components/registerPage';
-import DashboardPage from '../components/dashboardPage';
-import UnitOfMeasurePage from '../components/uomPage';
-import IngredientsPage from '../components/ingredientsPage';
+import LoginPage from '../components/LoginPage';
+import RegisterPage from '../components/RegisterPage';
+import DashboardPage from '../components/DashboardPage';
+import UnitOfMeasurePage from '../components/UomPage';
+import IngredientsPage from '../components/IngredientsPage';
 import CategoriesPage from '../components/CategoriesPage';
 import RecipePage from '../components/RecipePage';
 

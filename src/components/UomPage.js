@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { UnitOfMeasuresListContainer } from './UnitOfMeasuresList/UnitOfMeasuresList';
 import UnitOfMeasureCreateForm from './UnitOfMeasureCreateForm/UnitOfMeasureCreateForm';
-import { fetchUnitsOfMeasure } from '../actions/unitOfMeasureActions';
+import { fetchUnitsOfMeasure } from '../actions/UnitOfMeasureActions';
 
 const UnitOfMeasurePage = ({ fetchUnitsOfMeasure }) => {
   useEffect(() => {
