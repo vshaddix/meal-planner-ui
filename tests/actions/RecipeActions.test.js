@@ -1,4 +1,4 @@
-import * as actions from '../../src/actions/RecipeActions'
+import * as actions from '../../src/actions/RecipeActions/RecipeActions'
 
 describe('ACTIONS', () => {
   it('should create an action with correct type', () => {

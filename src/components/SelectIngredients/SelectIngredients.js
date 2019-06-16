@@ -2,16 +2,19 @@ import React, { useState } from 'react';
 import './SelectIngredients.scss';
 import propTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { addIngredientToNewRecipe, removeIngredientFromNewRecipe } from '../../actions/RecipeActions/NewRecipeActions';
 
-const SelectIngredients = ({ ingredients }) => {
+const SelectIngredients = ({ ingredients, addNewIngredient, removeIngredient  }) => {
   const [selectedIngredienties, setSelectedIngredienties] = useState([]);
 
   const setSelected = (ingredientId) => {
     const ingredient = ingredients.find(ingredient => ingredient.public_id === ingredientId);
+    addNewIngredient(ingredient);
     setSelectedIngredienties([...selectedIngredienties, ingredient]);
   };
 
   const removeFromSelected = (toBeRemovedIngredient) => {
+    removeIngredient(toBeRemovedIngredient);
     const newSelectedIngredients = selectedIngredienties.filter(ingredient => ingredient.public_id !== toBeRemovedIngredient.public_id);
     setSelectedIngredienties(newSelectedIngredients);
   };
@@ -45,13 +48,23 @@ SelectIngredients.defaultProps = {
   ingredients: [],
 };
 
+const mapDispatchToProps = (dispatch) => ({
+  addNewIngredient: (ingredient) => {
+    dispatch(addIngredientToNewRecipe(ingredient));
+  },
+  removeIngredient: (ingredient) => {
+    dispatch(removeIngredientFromNewRecipe(ingredient))
+  },
+});
+
+
 const mapStateToProps = (dispatch) => ({
   ingredients: dispatch.ingredients.ingredients,
 });
 
 const SelectIngredientsContainer = connect(
   mapStateToProps,
-  null,
+  mapDispatchToProps,
 )(SelectIngredients);
 
 export default SelectIngredients;

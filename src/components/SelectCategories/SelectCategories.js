@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './SelectCategories.scss';
 import propTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { addCategoryToNewRecipe, removeCategoryFromNewRecipe } from '../../actions/RecipeActions';
+import { addCategoryToNewRecipe, removeCategoryFromNewRecipe } from '../../actions/RecipeActions/RecipeActions';
 
 const SelectCategories = ({ categories, selectCategory, removeCategoryFromSelected }) => {
   const [selectedCategories, setSelectedCategories] = useState([]);
