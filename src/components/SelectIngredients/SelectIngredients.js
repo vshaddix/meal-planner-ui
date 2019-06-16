@@ -2,21 +2,16 @@ import React, { useState } from 'react';
 import './SelectIngredients.scss';
 import propTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { addIngredientToNewRecipe, removeIngredientFromNewRecipe } from '../../actions/RecipeActions/NewRecipeActions';
+import { addIngredientToNewRecipe } from '../../actions/RecipeActions/NewRecipeActions';
 
-const SelectIngredients = ({ ingredients, addNewIngredient, removeIngredient  }) => {
+const SelectIngredients = ({ ingredients, addNewIngredient  }) => {
   const [selectedIngredienties, setSelectedIngredienties] = useState([]);
 
   const setSelected = (ingredientId) => {
+    if (!ingredientId) return;
     const ingredient = ingredients.find(ingredient => ingredient.public_id === ingredientId);
     addNewIngredient(ingredient);
     setSelectedIngredienties([...selectedIngredienties, ingredient]);
-  };
-
-  const removeFromSelected = (toBeRemovedIngredient) => {
-    removeIngredient(toBeRemovedIngredient);
-    const newSelectedIngredients = selectedIngredienties.filter(ingredient => ingredient.public_id !== toBeRemovedIngredient.public_id);
-    setSelectedIngredienties(newSelectedIngredients);
   };
 
   return (
@@ -27,14 +22,6 @@ const SelectIngredients = ({ ingredients, addNewIngredient, removeIngredient  })
           <option key={ingredient.public_id} onSelect={() => setSelected(ingredient)} value={ingredient.public_id}>{ingredient.name}</option>
         ))}
       </select>
-      <div className="selected-categories">
-        {selectedIngredienties.map((ingredient) => (
-          <div key={ingredient.name}>
-            <span className="selected">{ingredient.name}</span>
-            <button onClick={() => removeFromSelected(ingredient)}>Remove</button>
-          </div>
-        ))}
-      </div>
     </div>
   );
 };
@@ -51,10 +38,7 @@ SelectIngredients.defaultProps = {
 const mapDispatchToProps = (dispatch) => ({
   addNewIngredient: (ingredient) => {
     dispatch(addIngredientToNewRecipe(ingredient));
-  },
-  removeIngredient: (ingredient) => {
-    dispatch(removeIngredientFromNewRecipe(ingredient))
-  },
+  }
 });
 
 

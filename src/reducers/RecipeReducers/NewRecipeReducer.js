@@ -36,7 +36,7 @@ export default function(state = initialState, action) {
         name: response.name,
         public_id: response.public_id,
       };
-      const categories = { ...state.categories, newCategory };
+      const categories = [ ...state.categories, newCategory ];
       return { ...state, categories };
 
     case types.REMOVE_CATEGORY_FROM_NEW_RECIPE:
@@ -52,7 +52,7 @@ export default function(state = initialState, action) {
         unit_of_measure: null,
         value: null
       };
-      const ingredients = { ...state.ingredients, newIngredient };
+      const ingredients = [ ...state.ingredients, newIngredient ];
       return { ...state, ingredients };
 
     default:

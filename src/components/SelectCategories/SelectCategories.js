@@ -8,6 +8,7 @@ const SelectCategories = ({ categories, selectCategory, removeCategoryFromSelect
   const [selectedCategories, setSelectedCategories] = useState([]);
 
   const setSelected = (categoryId) => {
+    if (!categoryId) return;
     const category = categories.find(cat => cat.public_id === categoryId);
     selectCategory(category);
     setSelectedCategories([...selectedCategories, category]);
