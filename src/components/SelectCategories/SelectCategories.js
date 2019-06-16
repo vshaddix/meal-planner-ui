@@ -6,22 +6,11 @@ import { addCategoryToNewRecipe, removeCategoryFromNewRecipe } from '../../actio
 
 const SelectCategories = ({ categories, selectCategory, removeCategoryFromSelected }) => {
   const [selectedCategories, setSelectedCategories] = useState([]);
-  const [autoCompletedCategories, setAutoCompletedCategories] = useState([]);
 
-  const autoCompleteCategories = (e) => {
-    const inputtedText = e.target.value.toLowerCase();
-    if (inputtedText === '') {
-      setAutoCompletedCategories([]);
-      return;
-    }
-    const categoriesToFilter = categories.filter(category => !selectedCategories.includes(category));
-    setAutoCompletedCategories(categoriesToFilter.filter(category => category.name.toLowerCase().indexOf(inputtedText) !== -1));
-  };
-
-  const setSelected = (category) => {
+  const setSelected = (categoryId) => {
+    const category = categories.find(cat => cat.public_id === categoryId);
     selectCategory(category);
     setSelectedCategories([...selectedCategories, category]);
-    setAutoCompletedCategories(autoCompletedCategories.filter(cat => cat.name !== category.name))
   };
 
   const removeFromSelected = (toBeRemovedCategory) => {
@@ -31,12 +20,12 @@ const SelectCategories = ({ categories, selectCategory, removeCategoryFromSelect
   };
   return (
     <div>
-      <input type="text" onInput={autoCompleteCategories}/>
-      <div className="autocompletedCategories">
-        {autoCompletedCategories.map((category) => (
-          <div key={category.name}>{category.name}<button onClick={() => setSelected(category)}>Add</button></div>
+      <select onChange={(e) => setSelected(e.target.value)} className="Category" id="">
+        <option value="">Select category</option>
+        {categories.map(category => (
+          <option key={category.public_id} onSelect={() => setSelected(category)} value={category.public_id}>{category.name}</option>
         ))}
-      </div>
+      </select>
       <div className="selected-categories">
         {selectedCategories.map((category) => (
           <div key={category.name}>
