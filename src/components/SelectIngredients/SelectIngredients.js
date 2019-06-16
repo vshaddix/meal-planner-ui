@@ -4,47 +4,28 @@ import propTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 const SelectIngredients = ({ ingredients }) => {
-  const [selectedIngredients, setSelectedIngredients] = useState([]);
-  const [autoCompletedIngredients, setAutoCompletedIngredients] = useState([]);
-  const [searchString, setSearchString] = useState('');
+  const [selectedIngredienties, setSelectedIngredienties] = useState([]);
 
-  const filterIngredientsByName = (searchString) => {
-    const ingredientsToFilter = ingredients.filter(ingredient => !selectedIngredients.includes(ingredient));
-    return ingredientsToFilter.filter(ingredient => ingredient.name.toLowerCase().indexOf(searchString) !== -1);
+  const setSelected = (ingredientId) => {
+    const ingredient = ingredients.find(ingredient => ingredient.public_id === ingredientId);
+    setSelectedIngredienties([...selectedIngredienties, ingredient]);
   };
 
-  const autoCompleteIngredients = (e) => {
-    const inputtedText = e.target.value.toLowerCase();
-    setSearchString(inputtedText);
-    if (inputtedText === '') {
-      setAutoCompletedIngredients([]);
-      return;
-    }
-    setAutoCompletedIngredients(filterIngredientsByName(searchString));
+  const removeFromSelected = (toBeRemovedIngredient) => {
+    const newSelectedIngredients = selectedIngredienties.filter(ingredient => ingredient.public_id !== toBeRemovedIngredient.public_id);
+    setSelectedIngredienties(newSelectedIngredients);
   };
 
-  const setSelected = (ingredient) => {
-    setSelectedIngredients([...selectedIngredients, ingredient]);
-    setAutoCompletedIngredients(autoCompletedIngredients.filter(ing => ing.name !== ingredient.name))
-  };
-
-  const removeFromSelected = (ingredient) => {
-    const newSelectedCategories = selectedIngredients.filter(ing => ing.name !== ingredient.name);
-    setSelectedIngredients(newSelectedCategories);
-    if (ingredient.name.indexOf(searchString) > -1) {
-      setAutoCompletedIngredients([...autoCompletedIngredients, ingredient]);
-    }
-  };
   return (
     <div>
-      <input type="text" onInput={autoCompleteIngredients}/>
-      <div className="autocompleted-ingredients">
-        {autoCompletedIngredients.map((ingredient) => (
-          <div key={ingredient.name}>{ingredient.name}<button onClick={() => setSelected(ingredient)}>Add</button></div>
+      <select onChange={(e) => setSelected(e.target.value)} className="Ingredient" id="">
+        <option value="">Select ingredient</option>
+        {ingredients.map(ingredient => (
+          <option key={ingredient.public_id} onSelect={() => setSelected(ingredient)} value={ingredient.public_id}>{ingredient.name}</option>
         ))}
-      </div>
-      <div className="selected-ingredients">
-        {selectedIngredients.map((ingredient) => (
+      </select>
+      <div className="selected-categories">
+        {selectedIngredienties.map((ingredient) => (
           <div key={ingredient.name}>
             <span className="selected">{ingredient.name}</span>
             <button onClick={() => removeFromSelected(ingredient)}>Remove</button>
