@@ -31,7 +31,6 @@ export const loginUserService = (request) => {
 
   return fetch(LOGIN_API_ENDPOINT, parameters)
     .then(response => {
-      debugger;
       return response.json();
     })
     .then(json => {

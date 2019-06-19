@@ -38,7 +38,9 @@
     ]
   },
   "devDependencies": {
+    "@babel/core": "*",
     "babel-jest": "^24.8.0",
-    "jest-cli": "^24.8.0"
+    "jest-cli": "^24.8.0",
+    "redux-mock-store": "^1.5.3"
   }
 }
