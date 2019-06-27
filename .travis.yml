@@ -7,6 +7,7 @@ cache:
 script:
   - yarn test
   - yarn run build
+  - yarn test:coverage
 
 deploy:
   provider: pages
@@ -15,4 +16,3 @@ deploy:
   local_dir: build
   on:
     branch: master
-    
