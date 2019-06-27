@@ -6,8 +6,8 @@ cache:
   - node_modules
 script:
   - yarn test
-  - yarn run build
   - yarn test:coverage
+  - yarn run build
 
 deploy:
   provider: pages
