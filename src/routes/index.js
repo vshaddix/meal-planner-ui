@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route } from 'react-router';
 import App from '../container/App';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { HashRouter as Router } from 'react-router-dom';
 import PrivateRoute from './PrivateRoute';
 import IndexRoute from './IndexRoute';
 
