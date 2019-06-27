@@ -42,5 +42,9 @@
     "babel-jest": "^24.8.0",
     "jest-cli": "^24.8.0",
     "redux-mock-store": "^1.5.3"
-  }
+  },
+  "main": "src/index.js",
+  "repository": "https://github.com/vshaddix/meal-planner-ui.git",
+  "author": "Vasil Shaddix <vasilshaddixx@gmail.com>",
+  "license": "MIT"
 }
