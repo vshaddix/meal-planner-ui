@@ -45,7 +45,7 @@
     "redux-mock-store": "^1.5.3"
   },
   "main": "src/index.js",
-  "homepage": "https://vshaddix.github.io/meal-planner-ui.git",
+  "homepage": "https://vshaddix.github.io/meal-planner-ui",
   "author": "Vasil Shaddix <vasilshaddixx@gmail.com>",
   "license": "MIT"
 }
