@@ -8,10 +8,19 @@ class RecipeCreateForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      ingredients: [],
+      ingredientsCount: 1,
       categories: [],
       title: '',
     };
+  }
+
+  createIngredients() {
+    let ingredients = [];
+    for (let x = 0; x < this.state.ingredientsCount; x++) {
+      ingredients.push(<SelectIngredientsContainer key={x}/>);
+    }
+
+    return ingredients;
   }
 
   render() {
@@ -37,7 +46,8 @@ class RecipeCreateForm extends Component {
         <hr/>
         <div className="recipe-ingredients">
           <span>Select ingredients:</span>
-          <SelectIngredientsContainer/>
+          {this.createIngredients()}
+          <button onClick={() => this.setState({ingredientsCount: this.state.ingredientsCount + 1})}>Add more!</button>
         </div>
       </div>
     );

@@ -45,14 +45,12 @@ export default function(state = initialState, action) {
 
     case types.ADD_INGREDIENT_TO_NEW_RECIPE:
       const newIngredient = {
-        ingredient: {
-          name: response.name,
-          public_id: response.public_id
-        },
-        unit_of_measure: null,
-        value: null
+        ingredient: response.ingredient,
+        unit_of_measure: response.unitOfMeasure,
+        value: response.quantity
       };
-      const ingredients = [ ...state.ingredients, newIngredient ];
+      const newIngredients = state.ingredients.filter(ingredientObject => ingredientObject.ingredient.public_id !== response.ingredient.public_id);
+      const ingredients = [ ...newIngredients, newIngredient ];
       return { ...state, ingredients };
 
     default:

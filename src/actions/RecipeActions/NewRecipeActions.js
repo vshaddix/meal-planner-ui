@@ -10,9 +10,9 @@ export const removeCategoryFromNewRecipe = category => ({
   payload: category
 });
 
-export const addIngredientToNewRecipe = ingredient => ({
+export const addIngredientToNewRecipe = (ingredient, unitOfMeasure, quantity) => ({
   type: types.ADD_INGREDIENT_TO_NEW_RECIPE,
-  payload: ingredient
+  payload: { ingredient, unitOfMeasure, quantity }
 });
 
 export const removeIngredientFromNewRecipe = ingredient => ({
