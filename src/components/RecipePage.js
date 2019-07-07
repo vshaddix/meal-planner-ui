@@ -5,6 +5,7 @@ import { fetchCategories } from '../actions/CategoriesActions';
 import { fetchUnitsOfMeasure } from '../actions/UnitOfMeasureActions';
 import { fetchRecipes } from '../actions/RecipeActions/RecipeActions';
 import RecipeCreateFormContainer from './RecipeCreateForm/RecipeCreateForm';
+import RecipesList from './RecipesList/RecipesList';
 
 
 const RecipePage = ({ fetchCategories, fetchIngredients, fetchUnitsOfMeasure, fetchRecipes }) => {
@@ -18,6 +19,9 @@ const RecipePage = ({ fetchCategories, fetchIngredients, fetchUnitsOfMeasure, fe
   const [addNewRecipe, setAddNewRecipe] = useState(false);
   return (
     <div>
+      <div className="recipes-list">
+        <RecipesList />
+      </div>
       {addNewRecipe &&
         <RecipeCreateFormContainer/>
       }

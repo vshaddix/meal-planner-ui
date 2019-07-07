@@ -1,4 +1,4 @@
-// import * as types from '../../actions/index';
+import * as types from '../../actions/index';
 
 const initialState = [
   // {
@@ -30,9 +30,11 @@ const initialState = [
 ];
 
 export default function(state = initialState, action) {
-  // let response = action.payload;
+  let response = action.payload;
 
   switch(action.type) {
+    case types.FETCH_ALL_RECIPES:
+      return [ ...response.data ];
 
     default:
       return state;

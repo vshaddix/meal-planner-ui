@@ -16,7 +16,7 @@ export const fetchRecipes = recipe => {
     const service = new RecipeService();
     const response = await service.fetchAll();
     dispatch({
-      type: types.LOAD_ALL_RECIPES,
+      type: types.FETCH_ALL_RECIPES,
       payload: response
     });
   }
