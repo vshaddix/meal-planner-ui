@@ -1,20 +1,28 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { fetchIngredients } from '../actions/IngredientsActions';
 import { fetchCategories } from '../actions/CategoriesActions';
 import { fetchUnitsOfMeasure } from '../actions/UnitOfMeasureActions';
+import { fetchRecipes } from '../actions/RecipeActions/RecipeActions';
 import RecipeCreateFormContainer from './RecipeCreateForm/RecipeCreateForm';
 
 
-const RecipePage = ({ fetchCategories, fetchIngredients, fetchUnitsOfMeasure }) => {
+const RecipePage = ({ fetchCategories, fetchIngredients, fetchUnitsOfMeasure, fetchRecipes }) => {
   useEffect(() => {
     fetchCategories();
     fetchIngredients();
     fetchUnitsOfMeasure();
+    fetchRecipes();
   });
+
+  const [addNewRecipe, setAddNewRecipe] = useState(false);
   return (
     <div>
-      <RecipeCreateFormContainer/>
+      {addNewRecipe &&
+        <RecipeCreateFormContainer/>
+      }
+
+      <button onClick={() => setAddNewRecipe(!addNewRecipe)}>Add new recipe</button>
     </div>
   );
 };
@@ -28,6 +36,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   fetchUnitsOfMeasure: () => {
     dispatch(fetchUnitsOfMeasure());
+  },
+  fetchRecipes: () => {
+    dispatch(fetchRecipes());
   },
 });
 
