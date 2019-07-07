@@ -34,7 +34,7 @@ describe('New recipe actions', () => {
     };
     const expectedAction = {
       type: 'ADD_INGREDIENT_TO_NEW_RECIPE',
-      payload: ingredient
+      payload: { ingredient, quantity: undefined, unitOfMeasure: undefined }
     };
 
     expect(actions.addIngredientToNewRecipe(ingredient)).toEqual(expectedAction)
@@ -42,7 +42,7 @@ describe('New recipe actions', () => {
 
   it('should create an action with correct type for removing an ingredient from a new recipe', () => {
     const ingredient = {
-      id: 1,
+      id: 11,
       name: 'Tomatoes'
     };
     const expectedAction = {
