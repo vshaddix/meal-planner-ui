@@ -3,5 +3,5 @@ export function isLoggedIn() {
 }
 
 export function getAuthenticationToken() {
-  return localStorage.getItem('id_token')
+  return localStorage.getItem('token')
 }

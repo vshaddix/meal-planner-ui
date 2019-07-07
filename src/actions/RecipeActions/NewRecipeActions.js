@@ -1,4 +1,5 @@
 import * as types from './../index';
+import RecipeService from '../../services/RecipeService';
 
 export const addCategoryToNewRecipe = category => ({
   type: types.ADD_CATEGORY_TO_NEW_RECIPE,
@@ -29,3 +30,26 @@ export const addStepsToNewRecipe = steps => ({
   type: types.ADD_STEPS_TO_NEW_RECIPE,
   payload: steps
 });
+
+export const createRecipe = recipe => {
+  return async function (dispatch) {
+    const service = new RecipeService();
+    const response = await service.createNew(recipe);
+    const requestFailed = response.status === 'fail';
+    if (requestFailed) {
+      dispatch({
+        type: types.CREATE_RECIPE_ERROR,
+        payload: response
+      });
+    } else {
+      dispatch({
+        type: types.CREATE_RECIPE_SUCCESS,
+        payload: response
+      });
+      dispatch({
+        type: types.CREATE_RECIPE,
+        payload: response
+      });
+    }
+  }
+};

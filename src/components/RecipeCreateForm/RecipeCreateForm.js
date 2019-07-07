@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { SelectCategoriesContainer } from '../SelectCategories/SelectCategories';
 import { SelectIngredientsContainer } from "../SelectIngredients/SelectIngredients";
-import { addTitleToNewRecipe, addStepsToNewRecipe } from '../../actions/RecipeActions/NewRecipeActions';
+import { addTitleToNewRecipe, addStepsToNewRecipe, createRecipe } from '../../actions/RecipeActions/NewRecipeActions';
 
 class RecipeCreateForm extends Component {
   constructor(props) {
@@ -17,6 +17,9 @@ class RecipeCreateForm extends Component {
 
     this.addTitleAction = props.addTitleToNewRecipe;
     this.addStepsToNewRecipe = props.addStepsToNewRecipe;
+    this.createRecipe = props.createRecipe;
+
+    this.createRecipeButtonHandler = this.createRecipeButtonHandler.bind(this);
   }
 
   createIngredients() {
@@ -40,17 +43,24 @@ class RecipeCreateForm extends Component {
     }, this.addStepsToNewRecipe(steps));
   }
 
+  createRecipeButtonHandler() {
+    this.createRecipe(this.props.response.NewRecipeReducer);
+  }
+
   render() {
     let message = '';
 
-    // if (this.props.response.ingredients.hasOwnProperty('responseMessage')) {
-    //   message = this.props.response.ingredients.responseMessage;
-    // }
+    if (this.props.response.NewRecipeReducer.isCreated) {
+      message = 'YEY, created!'
+    }
 
     return (
       <div>
         <h4>Add a new recipe</h4>
         <h5>{message}</h5>
+        <div className="message">
+          {message}
+        </div>
         <div className="recipe-form">
           <label htmlFor="recipe-title">Title:</label>
           <input onChange={(e) => this.setTitle(e.target.value)} value={this.state.title} name={"recipe-title"} type="text"/>
@@ -69,10 +79,10 @@ class RecipeCreateForm extends Component {
         <hr/>
         <div className="recipe-steps">
           <span>How to prepare the recipe:</span>
-          <textarea name="recipe-steps" cols="150" rows="70" onInput={(e) => this.setSteps(e.target.value)}></textarea>
+          <textarea name="recipe-steps" cols="150" rows="20" onInput={(e) => this.setSteps(e.target.value)}></textarea>
         </div>
         <hr/>
-        <button>Create</button>
+        <button onClick={this.createRecipeButtonHandler}>Create</button>
       </div>
     );
   }
@@ -84,6 +94,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   addStepsToNewRecipe: (steps) => {
     dispatch(addStepsToNewRecipe(steps));
+  },
+  createRecipe: (recipe) => {
+    dispatch(createRecipe(recipe));
   },
 });
 
