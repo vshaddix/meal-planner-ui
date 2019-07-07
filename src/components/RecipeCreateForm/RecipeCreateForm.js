@@ -2,16 +2,19 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { SelectCategoriesContainer } from '../SelectCategories/SelectCategories';
 import { SelectIngredientsContainer } from "../SelectIngredients/SelectIngredients";
-// import { createIngredient } from '../../actions/IngredientsActions';
+import { addTitleToNewRecipe } from '../../actions/RecipeActions/NewRecipeActions';
 
 class RecipeCreateForm extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       ingredientsCount: 1,
       categories: [],
       title: '',
     };
+
+    this.addTitleAction = props.addTitleToNewRecipe;
   }
 
   createIngredients() {
@@ -21,6 +24,12 @@ class RecipeCreateForm extends Component {
     }
 
     return ingredients;
+  }
+
+  setTitle(title) {
+    this.setState({
+      title
+    }, this.addTitleAction(title));
   }
 
   render() {
@@ -36,7 +45,7 @@ class RecipeCreateForm extends Component {
         <h5>{message}</h5>
         <div className="recipe-form">
           <label htmlFor="recipe-title">Title:</label>
-          <input onChange={(e) => this.setState({title: e.target.value})} value={this.state.title} name={"recipe-title"} type="text"/>
+          <input onChange={(e) => this.setTitle(e.target.value)} value={this.state.title} name={"recipe-title"} type="text"/>
         </div>
         <hr/>
         <div className="recipe-categories">
@@ -46,13 +55,21 @@ class RecipeCreateForm extends Component {
         <hr/>
         <div className="recipe-ingredients">
           <span>Select ingredients:</span>
-          {this.createIngredients()}
           <button onClick={() => this.setState({ingredientsCount: this.state.ingredientsCount + 1})}>Add more!</button>
+          {this.createIngredients()}
         </div>
+        <hr/>
+        <button>Create</button>
       </div>
     );
   }
 }
+
+const mapDispatchToProps = (dispatch) => ({
+  addTitleToNewRecipe: (title) => {
+    dispatch(addTitleToNewRecipe(title));
+  }
+});
 
 const mapStateToProps = (response) => ({
   response
@@ -60,7 +77,7 @@ const mapStateToProps = (response) => ({
 
 const RecipeCreateFormContainer = connect(
   mapStateToProps,
-  null,
+  mapDispatchToProps,
 )(RecipeCreateForm);
 
 export default RecipeCreateFormContainer;

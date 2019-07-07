@@ -19,3 +19,8 @@ export const removeIngredientFromNewRecipe = ingredient => ({
   type : types.REMOVE_INGREDIENT_FROM_NEW_RECIPE,
   payload: ingredient
 });
+
+export const addTitleToNewRecipe = title => ({
+  type: types.ADD_TITLE_TO_NEW_RECIPE,
+  payload: title
+});
