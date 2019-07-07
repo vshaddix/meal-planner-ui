@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { SelectCategoriesContainer } from '../SelectCategories/SelectCategories';
 import { SelectIngredientsContainer } from "../SelectIngredients/SelectIngredients";
-import { addTitleToNewRecipe } from '../../actions/RecipeActions/NewRecipeActions';
+import { addTitleToNewRecipe, addStepsToNewRecipe } from '../../actions/RecipeActions/NewRecipeActions';
 
 class RecipeCreateForm extends Component {
   constructor(props) {
@@ -12,9 +12,11 @@ class RecipeCreateForm extends Component {
       ingredientsCount: 1,
       categories: [],
       title: '',
+      steps: '',
     };
 
     this.addTitleAction = props.addTitleToNewRecipe;
+    this.addStepsToNewRecipe = props.addStepsToNewRecipe;
   }
 
   createIngredients() {
@@ -30,6 +32,12 @@ class RecipeCreateForm extends Component {
     this.setState({
       title
     }, this.addTitleAction(title));
+  }
+
+  setSteps(steps) {
+    this.setState({
+      steps
+    }, this.addStepsToNewRecipe(steps));
   }
 
   render() {
@@ -59,6 +67,11 @@ class RecipeCreateForm extends Component {
           {this.createIngredients()}
         </div>
         <hr/>
+        <div className="recipe-steps">
+          <span>How to prepare the recipe:</span>
+          <textarea name="recipe-steps" cols="150" rows="70" onInput={(e) => this.setSteps(e.target.value)}></textarea>
+        </div>
+        <hr/>
         <button>Create</button>
       </div>
     );
@@ -68,7 +81,10 @@ class RecipeCreateForm extends Component {
 const mapDispatchToProps = (dispatch) => ({
   addTitleToNewRecipe: (title) => {
     dispatch(addTitleToNewRecipe(title));
-  }
+  },
+  addStepsToNewRecipe: (steps) => {
+    dispatch(addStepsToNewRecipe(steps));
+  },
 });
 
 const mapStateToProps = (response) => ({

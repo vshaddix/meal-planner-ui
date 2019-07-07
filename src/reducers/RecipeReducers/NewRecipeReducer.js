@@ -31,6 +31,9 @@ export default function(state = initialState, action) {
   let response = action.payload;
 
   switch(action.type) {
+    case types.ADD_STEPS_TO_NEW_RECIPE:
+      return { ...state, name:response};
+
     case types.ADD_TITLE_TO_NEW_RECIPE:
       return { ...state, name: response};
 

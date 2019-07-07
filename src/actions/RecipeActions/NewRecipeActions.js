@@ -24,3 +24,8 @@ export const addTitleToNewRecipe = title => ({
   type: types.ADD_TITLE_TO_NEW_RECIPE,
   payload: title
 });
+
+export const addStepsToNewRecipe = steps => ({
+  type: types.ADD_STEPS_TO_NEW_RECIPE,
+  payload: steps
+});
