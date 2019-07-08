@@ -8,7 +8,9 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
       {...rest}
       render={props => {
         return isLoggedIn() ? (
-          <Component {...props} />
+          <div style={{marginLeft:'5%', marginRight: '5%', paddingTop:'3%'}}>
+            <Component {...props} />
+          </div>
         ) : (
           <Redirect to={{ pathname: '/login', state: { from: props.location } }} />
         )

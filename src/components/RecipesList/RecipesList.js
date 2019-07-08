@@ -1,13 +1,16 @@
 import React  from 'react';
 import propTypes from 'prop-types';
 import { connect } from 'react-redux';
+import RecipeItem from '../RecipeItem/RecipeItem';
 
 const RecipesList = ({ ingredients, unitsOfMeasure, recipes  }) => {
 
+  const recipesList = recipes.map(recipe => <RecipeItem key={recipe.name} recipe={recipe}/>);
+
   // recipes[0].steps.split('\n')
   return (
-    <div>
-      
+    <div className="ui cards">
+      {recipesList}
     </div>
   );
 };
