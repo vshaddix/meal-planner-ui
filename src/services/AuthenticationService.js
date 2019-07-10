@@ -1,5 +1,5 @@
 export const registerUserService = (request) => {
-  const REGISTER_API_ENDPOINT = 'http://localhost:5000/user/';
+  const REGISTER_API_ENDPOINT = 'https://meal-planner-api-python.herokuapp.com/user/';
 
   const parameters = {
     method: 'POST',
@@ -19,7 +19,7 @@ export const registerUserService = (request) => {
 };
 
 export const loginUserService = (request) => {
-  const LOGIN_API_ENDPOINT = 'http://localhost:5000/auth/login';
+  const LOGIN_API_ENDPOINT = 'https://meal-planner-api-python.herokuapp.com/auth/login';
 
   const parameters = {
     method: 'POST',

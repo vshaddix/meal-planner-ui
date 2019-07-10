@@ -2,7 +2,7 @@ import { getAuthenticationToken, isLoggedIn } from '../utils/AuthUtil';
 
 export default class UnitOfMeasureService {
   constructor(apiBaseUrl) {
-    this.apiUrl = (apiBaseUrl || 'http://localhost:5000') + '/uom/';
+    this.apiUrl = (apiBaseUrl || 'https://meal-planner-api-python.herokuapp.com') + '/uom/';
     this.fetch = this.fetch.bind(this);
     this.createNewUom = this.createNewUom.bind(this);
     this.fetchAllUnitsOfMeasure = this.fetchAllUnitsOfMeasure.bind(this);

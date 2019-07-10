@@ -3,7 +3,7 @@ import propTypes from 'prop-types';
 
 class BaseService {
   constructor(apiBaseUrl) {
-    this.apiBaseUrl = (apiBaseUrl || 'http://localhost:5000');
+    this.apiBaseUrl = (apiBaseUrl || 'https://meal-planner-api-python.herokuapp.com');
     this.apiUri = '';
     this.fetch = this.fetch.bind(this);
     this.createNew = this.createNew.bind(this);

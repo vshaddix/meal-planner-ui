@@ -2,7 +2,7 @@ import { getAuthenticationToken, isLoggedIn } from '../utils/AuthUtil';
 
 export default class IngredientService {
   constructor(apiBaseUrl) {
-    this.apiUrl = (apiBaseUrl || 'http://localhost:5000') + '/ingredient/';
+    this.apiUrl = (apiBaseUrl || 'https://meal-planner-api-python.herokuapp.com') + '/ingredient/';
     this.fetch = this.fetch.bind(this);
     this.createNewIngredient = this.createNewIngredient.bind(this);
     this.fetchAllIngredients = this.fetchAllIngredients.bind(this);
