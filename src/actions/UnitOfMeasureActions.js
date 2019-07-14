@@ -4,7 +4,7 @@ import UnitOfMeasureService from '../services/UnitOfMeasureService';
 export const createUnitOfMeasure = unitOfMeasure => {
   return async function (dispatch) {
     const service = new UnitOfMeasureService();
-    const response = await service.createNewUom(unitOfMeasure);
+    const response = await service.createNew(unitOfMeasure);
     const requestFailed = response.status === 'fail';
     if (requestFailed) {
       dispatch({
@@ -27,7 +27,7 @@ export const createUnitOfMeasure = unitOfMeasure => {
 export const fetchUnitsOfMeasure = () => {
   return async function (dispatch) {
     const service = new UnitOfMeasureService();
-    const response = await service.fetchAllUnitsOfMeasure();
+    const response = await service.fetchAll();
 
     dispatch({
       type: types.FETCH_ALL_UNITS_OF_MEASURE,

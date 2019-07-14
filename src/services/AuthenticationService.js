@@ -1,39 +1,38 @@
-export const registerUserService = (request) => {
-  const REGISTER_API_ENDPOINT = 'https://meal-planner-api-python.herokuapp.com/user/';
+import config from 'config/environment';
 
-  const parameters = {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(request)
-  };
+class AuthenticationService {
+  constructor() {
+    this.fetch = this.fetch.bind(this);
+  }
 
-  return fetch(REGISTER_API_ENDPOINT, parameters)
-    .then(response => {
-      return response.json();
-    })
-    .then(json => {
-      return json;
+  apiBaseUrl = config.apiBaseUrl;
+
+  registerUser(data) {
+    return this.fetch(`${this.apiBaseUrl}user/`, {
+      method: 'POST',
+      body: JSON.stringify(data)
     });
-};
+  }
 
-export const loginUserService = (request) => {
-  const LOGIN_API_ENDPOINT = 'https://meal-planner-api-python.herokuapp.com/auth/login';
-
-  const parameters = {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(request)
-  };
-
-  return fetch(LOGIN_API_ENDPOINT, parameters)
-    .then(response => {
-      return response.json();
-    })
-    .then(json => {
-      return json;
+  loginUser(data) {
+    return this.fetch(`${this.apiBaseUrl}auth/login`, {
+      method: 'POST',
+      body: JSON.stringify(data)
     });
-};
+  }
+
+  fetch(url, options) {
+    const headers = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    };
+
+    return fetch(url, {
+      headers,
+      ...options
+    })
+      .then(response => response.json())
+  }
+}
+
+export default AuthenticationService;

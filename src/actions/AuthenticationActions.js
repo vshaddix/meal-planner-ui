@@ -1,9 +1,10 @@
 import * as types from './index';
-import { registerUserService, loginUserService } from '../services/AuthenticationService';
+import AuthenticationService from 'services/AuthenticationService';
 
 export const registerUserAction = user => {
   return async function (dispatch) {
-    const response = await registerUserService(user);
+    const service = new AuthenticationService();
+    const response = await service.registerUser(user);
 
     dispatch({
       type: types.REGISTER_USER,
@@ -14,7 +15,8 @@ export const registerUserAction = user => {
 
 export const loginUserAction = user => {
   return async function (dispatch) {
-    const response = await loginUserService(user);
+    const service = new AuthenticationService();
+    const response = await service.loginUser(user);
 
     dispatch({
       type: types.LOGIN_USER,

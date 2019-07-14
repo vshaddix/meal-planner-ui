@@ -1,4 +1,4 @@
-import BaseService from './BaseService';
+import BaseService from 'services/BaseService';
 
 export default class CategoryService extends BaseService {
   constructor() {

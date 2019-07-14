@@ -1,14 +1,17 @@
-import { getAuthenticationToken, isLoggedIn } from '../utils/AuthUtil';
+import { getAuthenticationToken, isLoggedIn } from 'utils/AuthUtil';
 import propTypes from 'prop-types';
+import config from 'config/environment';
 
 class BaseService {
-  constructor(apiBaseUrl) {
-    this.apiBaseUrl = (apiBaseUrl || 'https://meal-planner-api-python.herokuapp.com');
+  constructor() {
     this.apiUri = '';
+
     this.fetch = this.fetch.bind(this);
     this.createNew = this.createNew.bind(this);
     this.fetchAll = this.fetchAll.bind(this);
   }
+
+  apiBaseUrl = config.apiBaseUrl;
 
   get apiUrl() {
     return `${this.apiBaseUrl}/${this.apiUri}`;

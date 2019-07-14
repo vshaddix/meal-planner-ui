@@ -4,7 +4,7 @@ import IngredientService from '../services/IngredientService';
 export const createIngredient = ingredient => {
   return async function (dispatch) {
     const service = new IngredientService();
-    const response = await service.createNewIngredient(ingredient);
+    const response = await service.createNew(ingredient);
     const requestFailed = response.status === 'fail';
     if (requestFailed) {
       dispatch({
@@ -27,7 +27,7 @@ export const createIngredient = ingredient => {
 export const fetchIngredients = () => {
   return async function (dispatch) {
     const service = new IngredientService();
-    const response = await service.fetchAllIngredients();
+    const response = await service.fetchAll();
 
     dispatch({
       type: types.FETCH_ALL_INGREDIENTS,
